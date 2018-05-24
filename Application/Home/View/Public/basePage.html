@@ -1,0 +1,27 @@
+<div class="fr page_skip">
+	<b class="fl">共计{$pages.nums}条记录，每页
+	<select name="pageSetPerNum" class="pageSetPerNumSelect" data-url="{$pages.setPerPageNumUrl}" data-listid="{$pages.formContent}" data-formid="{$pages.formCondition}">
+		<option value="3" <eq name="pages.pageSize" value="3">selected</eq>>3</option>
+		<option value="5" <eq name="pages.pageSize" value="5">selected</eq>>5</option>
+		<option value="10" <eq name="pages.pageSize" value="10">selected</eq>>10</option>
+		<option value="15" <eq name="pages.pageSize" value="15">selected</eq>>15</option>
+		<option value="20" <eq name="pages.pageSize" value="20">selected</eq>>20</option>
+		<option value="30" <eq name="pages.pageSize" value="30">selected</eq>>30</option>
+		<option value="40" <eq name="pages.pageSize" value="40">selected</eq>>40</option>
+		<option value="50" <eq name="pages.pageSize" value="50">selected</eq>>50</option>
+	</select>条记录</b>
+	<b class="fl"><eq name="pages.pageCount" value="0">0<else />{$pages.currentPage}</eq>/{$pages.pageCount}</b>
+
+	<div class="fl page_skip_select">
+		<a class="<elt name="pages.currentPage" value="1">disabled</elt> basePageOperation" href="javascript:void(0)" data-listid="{$pages.formContent}" data-formid="{$pages.formCondition}" data-url="{$pages.firsturl}">[首页]</a>
+		<a class="<elt name="pages.currentPage" value="1">disabled</elt> basePageOperation" href="javascript:void(0)" data-listid="{$pages.formContent}" data-formid="{$pages.formCondition}" data-url="{$pages.preurl}">[上页]</a>
+		<a class="<egt name="pages.currentPage" value="$pages.pageCount">disabled</egt> basePageOperation" href="javascript:void(0)" data-listid="{$pages.formContent}" data-formid="{$pages.formCondition}" data-url="{$pages.nexturl}">[下页]</a>
+		<a class="<egt name="pages.currentPage" value="$pages.pageCount">disabled</egt> basePageOperation" href="javascript:void(0)" data-listid="{$pages.formContent}" data-formid="{$pages.formCondition}" data-url="{$pages.lasturl}">[尾页]</a>
+	</div>
+	<div class="fl page_skip_location">
+		跳转到：<input type="text" value="" class="basePageLocationNum" onSubmit="return false;">页
+		<a class="btn btn_img basePageOperation" data-listid="{$pages.formContent}" data-formid="{$pages.formCondition}" data-url="{$pages.locationNumUrl}">GO</a>
+	</div>
+	<input type="hidden" value="{$pages.currentPageUrl}" id="currenPageId" />
+	<input type="hidden" value="{$trunpageDataType}" id="trunpageDataType" />
+</div>

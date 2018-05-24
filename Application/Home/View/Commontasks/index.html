@@ -1,0 +1,128 @@
+<extend name="Public:base" />
+<block name="title">通用任务</block>
+<block name="main">
+    <div class="common_task_index">
+        <div class="main_header">
+            <div class="main_header_contrainer">
+                <form action="{:U('taskList')}" autocomplete="off" id="formCondition">
+                    <div class="fl task_type">
+                        <ul id="quickSelectBtnContent">
+                            <li><a class="on" data-id="1">未结束的</a></li>
+                            <li><a data-id="2">所有的</a></li>
+                            <li><a data-id="3">指派给我的</a></li>
+                        </ul>
+                    </div>
+                    <div class="fl search_box">
+                        <div class="search_contrainer content_search_box">
+                            <div class="fl search_type_box">
+                                <a class="btn btn_img no_select search_type_on">
+                                    <span>任务名称</span>
+                                    <i class="arrow down_arrow"></i>
+                                    <input type="hidden" value="1" name="search_option" id="search_option" />
+                                </a>
+                                <ul class="search_type">
+                                    <li><a data-id="1">任务名称</a></li>
+                                    <li><a data-id="2">任务ID</a></li>
+                                    <li><a data-id="3">优先级</a></li>
+                                    <li><a data-id="4">指派给</a></li>
+                                    <li><a data-id="5">计划截止</a></li>
+                                    <li><a data-id="6">状态</a></li>
+                                    <li><a data-id="7">阶段</a></li>
+                                    <li><a data-id="8">提出人</a></li>
+                                    <li><a data-id="9">提出日期</a></li>
+                                    <li><a data-id="10">提出部门</a></li>
+                                    <li><a data-id="11">完成人</a></li>
+                                    <li><a data-id="12">完成满意度</a></li>
+                                </ul>
+                            </div>
+                            <div class="fl input_box search_content_box" id="search_val_1">
+                                <input type="text" class="search_text search_val" name="title" placeholder="请输入查询内容">
+                            </div>
+                            <div class="fl input_box hide search_content_box" id="search_val_2">
+                                <input type="text" class="search_text search_val" name="wid" placeholder="请输入查询内容">
+                            </div>
+                            <div class="fl select_box hide search_content_box" id="search_val_3">
+                                <select class="select_contrainer search_val" name="precedence">
+                                    <option value="">请选择优先级</option>
+                                    <volist name="priorityList" id="val">
+                                        <option value="{$key}">{$val}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                            <div class="fl input_box hide search_content_box" id="search_val_4">
+                                <input type="text" class="search_text search_val" name="person" chosen_search='1' data-advanced="{:U('user/advancedSearch')}" data-url="{:U('user/searchUser')}" />
+                            </div>
+                            <div class="fl input_box hide search_content_box" id="search_val_5">
+                                <input type="text" class="date_select search_val" name="endDate" placeholder="请选择计划截止" readonly="readonly" unselectable="on" />
+                            </div>
+                            <div class="fl select_box hide search_content_box" id="search_val_6">
+                                <select class="select_contrainer search_val" name="taskStatus">
+                                    <option value="">请选择状态</option>
+                                    <volist name="statusList" id="val">
+                                        <neq name="key" value="-1">
+                                            <option value="{$key}">{$val}</option>
+                                        </neq>
+                                    </volist>
+                                </select>
+                            </div>
+                            <div class="fl select_box hide search_content_box" id="search_val_7">
+                                <select class="select_contrainer search_val" name="taskStage">
+                                    <option value="">请选择阶段</option>
+                                    <volist name="stageList" id="val">
+                                        <option value="{$key}">{$val}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                            <div class="fl input_box hide search_content_box" id="search_val_8">
+                                <input type="text" class="search_text search_val" name="creator" chosen_search='1' data-advanced="{:U('user/advancedSearch')}" data-url="{:U('user/searchUser')}" />
+                            </div>
+                            <div class="fl input_box hide search_content_box" id="search_val_9">
+                                <input type="text" class="date_select search_val" name="createDate" placeholder="请选择提出日期" readonly="readonly" unselectable="on" />
+                            </div>
+                            <div class="fl input_box hide search_content_box" id="search_val_10">
+                                <input type="text" class="search_text search_val" name="createDept" chosen_search='1' data-url="{:U('department/searchDepartment')}" data-advanced="{:U('department/advancedSearch')}" value="" data-formdata='{"noTop" : "1"}'/>
+                            </div>
+                            <div class="fl input_box hide search_content_box" id="search_val_11">
+                                <input type="text" class="search_text search_val" name="finishedUser" chosen_search='1' data-advanced="{:U('user/advancedSearch')}" data-url="{:U('user/searchUser')}" />
+                            </div>
+
+                            <div class="fl select_box hide search_content_box" id="search_val_12">
+                                <select class="select_contrainer search_val" name="satisfactionStar">
+                                    <option value="">请选择满意度</option>
+                                    <volist name="satisfactionStarList" id="val">
+                                        <neq name="key" value="0">
+                                            <option value="{$key}">{$val}</option>
+                                        </neq>
+                                    </volist>
+                                </select>
+                            </div>
+                            <div class="fl search_btn_box">
+                                <a class="btn btn_img search_btn">搜索</a>
+                            </div>
+                        </div>
+                    </div>
+                    <eq name="showTempDate" value="1">
+                        <div class="fl input_box">
+                            &nbsp;&nbsp;提出日期：<input type="text" class="date_select" name="tempDate" placeholder="请选择提出日期" readonly="readonly" unselectable="on" />
+                        </div>
+                    </eq>
+
+                    <input type="hidden" name="sort_field" value="" />
+                    <input type="hidden" name="sort_order" value="" />
+                    <input type="hidden" name="quickSelectStatus" value="1" />
+                </form>
+                <div class="fr action_btn task_action">{$addBtn}</div>
+            </div>
+        </div>
+        <div class="main_table_box common_task_contrainer" id="formContent"></div>
+    </div>
+</block>
+<block name="js_import">
+    <js href="__PUBLIC__/js/WdatePicker.js" />
+    <js href="__PUBLIC__/js/jquery.ztree.core-3.5.min.js" />
+    <js href="__PUBLIC__/js/commontasks/task.js" />
+</block>
+
+<block name="css_import">
+    <css href="__PUBLIC__/css/zTreeStyle.css" />
+</block>

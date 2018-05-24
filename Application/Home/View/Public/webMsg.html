@@ -1,0 +1,115 @@
+<div class="mail_page_box">
+    <div class="mail_temp_contrainer">
+        <div class="mail_temp_title">
+            <div class="mail_title_box">
+                <div class="mail_title mail_title_name"><a href="{$url}">{$name|default='--'}</a></div>
+                <div class="mail_title mail_assign">
+                    当前任务指派给
+                    <i></i>
+                    <b><empty name="assignTo">--<else/>{$assignTo}</empty></b>
+                </div>
+            </div>
+        </div>
+        <notempty name="msgAttachment">
+        <div class="mail_content_box att_content org_content">
+            <div class="mail_content_legend">
+                <div class="mail_legend">邮件附件</div>
+                <i></i>
+            </div>
+            <div class="mail_content">
+                <div class="mail_content_detail">
+                    <ul class="task_attchements_content">
+                        <volist name="msgAttachment" id="val">
+                            <li>
+                                <div class="att_box att_{$val.extClass}">
+                                    <div class="att_info">
+                                        {$val.name}
+                                    </div>
+                                    <div class="att_action">
+                                        <i class="fl">
+                                            <if condition="$val['size']/1024/1024 egt 1">{$val['size']/1024/1024|round="2"}MB<else/>{$val['size']/1024|round="2"}KB</if>
+                                        </i>
+
+                                        <div class="fr att_action_list">
+                                            <a href="{:U('file/downloads', array('id' => $val['id']), 'html', true)}">下载</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </notempty>
+        <notempty name="abnormal">
+        <div class="mail_content_box darkred_content">
+            <div class="mail_content_legend">
+                <div class="mail_legend">异常提醒</div>
+                <i></i>
+            </div>
+            <div class="mail_content">
+                <div class="mail_content_detail">
+                    {$abnormal}
+                </div>
+            </div>
+        </div>
+        </notempty>
+        <notempty name="content">
+            <volist name="content" id="val">
+                <div class="mail_content_box">
+                    <div class="mail_content_legend">
+                        <div class="mail_legend">{$val.title}</div>
+                        <i></i>
+                    </div>
+                    <div class="mail_content">
+                        <div class="mail_content_detail">
+                            {$val.desc}
+                        </div>
+                    </div>
+                </div>
+            </volist>
+        </notempty>
+        <notempty name="actionLogId">
+            <notempty name="actionLog">
+                <div class="mail_content_box org_content">
+                    <div class="mail_content_legend">
+                        <div class="mail_legend">操作历史</div>
+                        <i></i>
+                    </div>
+                    <div class="mail_content">
+                        <div class="mail_content_detail">
+                            <ul class="task_history_list">
+                                <volist name="actionLog" id="actions" key="k">
+                                    <li>
+                                        <span class="history_item">
+                                            {$actions|printActionLog}
+                                        </span>
+                                        <if condition="($actions.history neq '') OR ($actions.comment neq '')">
+                                            <div class="history_change_box">
+                                                <notempty name="actions.history">
+                                                    <div class="history_change">
+                                                    <volist name="actions.history" id="history">
+                                                        <div class="history_change_item">
+                                                            {:(printActionLogData($actions['object_type_id'], $history))}
+                                                        </div>
+                                                    </volist>
+                                                    </div>
+                                                </notempty>
+                                                <notempty name="actions.comment">
+                                                    <div class="history_comment">
+                                                        {$actions.comment}
+                                                    </div>
+                                                </notempty>
+                                            </div>
+                                        </if>
+                                    </li>
+                                </volist>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </notempty>
+        </notempty>
+    </div>
+</div>

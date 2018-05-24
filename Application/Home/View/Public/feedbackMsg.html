@@ -1,0 +1,98 @@
+<div class="mail_page_box">
+    <div class="mail_temp_contrainer">
+        <div class="mail_temp_title">
+            <div class="mail_title_box">
+                <div class="mail_title mail_title_name"><a href="{$url}">{$name|default='--'}</a></div>
+                <div class="mail_title mail_assign">
+                    超期反馈人
+                    <i></i>
+                    <b><empty name="assignTo">--<else/>{$assignTo}</empty></b>
+                </div>
+            </div>
+        </div>
+        <notempty name="abnormal">
+            <div class="mail_content_box red_content">
+                <div class="mail_content_legend">
+                    <div class="mail_legend">超期详情</div>
+                    <i></i>
+                </div>
+                <div class="mail_content">
+                    <div class="mail_content_detail">
+                        {$abnormal}
+                    </div>
+                </div>
+            </div>
+        </notempty>
+        <notempty name="overdueReason.comment">
+            <div class="mail_content_box purple_content">
+                <div class="mail_content_legend">
+                    <div class="mail_legend">超期原因</div>
+                    <i></i>
+                </div>
+                <div class="mail_content">
+                    <div class="mail_content_detail">
+                        {$overdueReason.comment}
+                    </div>
+                </div>
+            </div>
+        </notempty>
+
+
+        <notempty name="content">
+            <volist name="content" id="val">
+                <div class="mail_content_box">
+                    <div class="mail_content_legend">
+                        <div class="mail_legend">{$val.title}</div>
+                        <i></i>
+                    </div>
+                    <div class="mail_content">
+                        <div class="mail_content_detail">
+                            {$val.desc}
+                        </div>
+                    </div>
+                </div>
+            </volist>
+        </notempty>
+        <notempty name="actionLogId">
+            <notempty name="actionLog">
+                <div class="mail_content_box org_content">
+                    <div class="mail_content_legend">
+                        <div class="mail_legend">操作历史</div>
+                        <i></i>
+                    </div>
+                    <div class="mail_content">
+                        <div class="mail_content_detail">
+                            <ul class="task_history_list">
+                                <volist name="actionLog" id="actions" key="k">
+                                    <li>
+                                        <span class="history_item">
+                                            {$actions|printActionLog}
+                                        </span>
+                                        <if condition="($actions.history neq '') OR ($actions.comment neq '')">
+                                            <div class="history_change_box">
+                                                <notempty name="actions.history">
+                                                    <div class="history_change">
+                                                        <volist name="actions.history" id="history">
+                                                            <div class="history_change_item">
+                                                                {:(printActionLogData($actions['object_type_id'], $history))}
+                                                            </div>
+                                                        </volist>
+                                                    </div>
+                                                </notempty>
+                                                <notempty name="actions.comment">
+                                                    <div class="history_comment">
+                                                        {$actions.comment}
+                                                    </div>
+                                                </notempty>
+                                            </div>
+                                        </if>
+                                    </li>
+                                </volist>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </notempty>
+        </notempty>
+    </div>
+</div>

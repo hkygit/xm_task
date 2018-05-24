@@ -1,0 +1,63 @@
+<div class="dialog_page_box common_win delete_dialog">
+	<div class="content_box">
+		<p>删除后无法恢复，确定删除？</p>
+		<div class="bottom_action" id="{$delInfo.delBoxId}">
+			<a class="btn btn_img btn_submit"><b>确定</b></a>
+			<a class="btn btn_img btn_cannel"><b>取消</b></a>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(function() {
+	$('#{$delInfo.delBoxId} .btn_cannel').on('click', function() {
+		dialog.get('{$delInfo.deleteDialogId}').remove();
+	})
+
+	$('#{$delInfo.delBoxId} .btn_submit').on('click', function() {
+		var self = $(this);
+
+		$.ajax({
+			type: 'post',
+			url: '{$delInfo.url}',
+			data: <literal>{</literal>"{$delInfo.submitName}": "1"<literal>}</literal>,
+			beforeSend: function() {
+				self.hide();
+				self.before('<a class="btn btn_loading"></a>');
+			},
+			complete: function() {
+				self.prev('.btn_loading').remove();
+				self.show();
+			},
+			success: function(data) {
+				if(typeof(data) === 'undefined') {
+					$.dialogMsg.alert('系统错误，请刷新后再试一次~');
+					dialog.get('{$delInfo.deleteDialogId}').remove();
+					return false;
+				} else if(data.error) {
+					if(data.tips_id && $('#'+data.tips_id)) {
+						$('#'+data.tips_id).html(data.msg);
+					} else {
+						$.dialogMsg.alert(data.msg);
+					}
+					return false;
+				}
+
+				if($('#{$delInfo.formContent}').length > 0) {
+					$.trunTocurrenPage('{$delInfo.formContent}', '{$delInfo.formCondition}');
+				} else if('{$delInfo.reload}' == '1') {
+					window.location.reload();
+				} else {
+					$.pageBack();
+				}
+				dialog.get('{$delInfo.deleteDialogId}').remove();
+			},
+			error: function() {
+				$.dialogMsg.alert('系统错误，请刷新后再试一次~');
+				dialog.get('{$delInfo.deleteDialogId}').remove();
+			},
+			dataType: 'json'
+		})
+	})
+})
+</script>

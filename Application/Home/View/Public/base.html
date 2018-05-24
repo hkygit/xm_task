@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<meta name="renderer" content="webkit">
+	<link rel="Shortcut Icon" href="__PUBLIC__/image/img/favicon.ico">
+    <title><block name="title"></block>-Task任务管理系统</title>
+	<css href="__PUBLIC__/css/common.css?v=20180417" />
+	<css href="__PUBLIC__/css/ui-dialog.css" />
+	<css href="__PUBLIC__/css/chosen.css" />
+	<css href="__PUBLIC__/js/kindeditor/plugins/code/prettify.css" />
+	<eq name="isIE9" value="1">
+	<css href="__PUBLIC__/css/uploadify.css" />
+	<else />
+	<css href="__PUBLIC__/css/uploadifive.css" />
+	</eq>
+	<block name="css_import"></block>
+
+	<script type="text/javascript">
+		var uploadImageUrl = '{$uploadImageUrl}';
+		var ajaxPasteImageUrl = '{:U("file/ajaxPasteImage")}';
+		var isIE9Browser = '{$isIE9}';
+	</script>
+</head>
+<body>
+<div id="task_header">
+    <div class="header_box">
+        <a href="{:U('index/index')}" class="logo_box"></a>
+        <div class="label_box">
+			<ul>
+				<volist name="topNav" id="val">
+					<li><a href="{$val.url}"<eq name="val.name" value="$nav_name"> class="on"</eq>>{$val.title}</a></li>
+				</volist>
+			</ul>
+        </div>
+        <div class="user_action_box">
+            <i class="user_action_icon"></i>
+            欢迎您：<a class="user_name" href="{:U('Usercenter/index')}"><empty name="userName">游客<else />{$userName}</empty></a>
+			<a class="btn btn_img user_message" title="私人信息：{$person_msg_num}条 公共信息：{$public_msg_num}条" href="{:U('Message/index')}">
+				<neq name="total_msg_num" value="0"><i id="total_msg_num">{$total_msg_num}</i></neq>
+			</a>
+            <a class="btn btn_img user_exit" href="{:u('passport/logout')}">退出</a>
+        </div>
+    </div>
+</div>
+<div id="task_content">
+    <div class="content_label">
+		<ul>
+			<volist name="menu" id="val">
+				<empty name="val.childMenu">
+					<li>
+						<div class="label_content_container">
+							<a href="{$val.url}" class="main_label <eq name="val.name" value="$menu_name"> on</eq>">{$val.title}</a>
+						</div>
+					</li>
+				<else/>
+					<li>
+						<div class="label_content_container">
+							<a href="javascript:void(0);" class="main_label <eq name="val.name" value="$menu_name">on</eq>">{$val.title}</a>
+							<div class="hide label_content_box">
+								<ul class="hide third_label_box">
+								<volist name="val.childMenu" id="v">
+									<li><a href="{$v.url}"><i>{$v.title}</i></a></li>
+								</volist>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</empty>
+			</volist>
+        </ul>
+    </div>
+	<div class="content_location">
+        <a class="btn btn_img home_href" href="{:u('index/index')}"></a>
+        <i>&gt;</i>
+        <a href="{$top_url}">{$top_menu}</a>
+		<notempty name="second_menu">
+        <i class="<if condition="empty($third_menu) AND !empty($second_menu)">last_arrow</if>">&gt;</i>
+        <a class="<if condition="empty($third_menu) AND !empty($second_menu)">location_href</if>" href="{$second_url}">{$second_menu}</a>
+		</notempty>
+		<notempty name="third_menu">
+		<i class="<if condition="!empty($third_menu) AND !empty($second_menu)">last_arrow</if>">&gt;</i>
+        <a class="<if condition="!empty($third_menu) AND !empty($second_menu)">location_href</if>" href="{$third_url}">{$third_menu}</a>
+		</notempty>
+    </div>
+	<div class="content_box">
+		<block name="main"></block>
+	</div>
+</div>
+<div class="loading_data hide" id="loading_data_imgIcon"></div>
+
+<notempty name="task_helpcenter_url">
+<a class="btn help_icon" href="{$task_helpcenter_url}" target="_blank"></a>
+</notempty>
+
+<js href="__PUBLIC__/js/jquery.js?v=20170713" />
+<eq name="isIE9" value="1">
+<js href="__PUBLIC__/js/jquery.uploadify.js" />
+<else />
+<js href="__PUBLIC__/js/jquery.uploadifive.js" />
+</eq>
+<js href="__PUBLIC__/js/dialog-min.js" />
+<js href="__PUBLIC__/js/chosen.jquery.min.js" />
+<eq name="isIE8" value="1">
+<js href="__PUBLIC__/js/kindeditor/kindeditor-min-IE8.js" />
+<else />
+<js href="__PUBLIC__/js/kindeditor/kindeditor-min.js" />
+</eq>
+<js href="__PUBLIC__/js/kindeditor/lang/zh_CN.js" />
+<js href="__PUBLIC__/js/kindeditor/plugins/code/prettify.js" />
+<js href="__PUBLIC__/js/common.js?v=20180420" />
+<block name="js_import"></block>
+</body>
+</html>

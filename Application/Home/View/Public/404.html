@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="Shortcut Icon" href="__PUBLIC__/image/img/favicon.ico">
+    <title>页面跳转-Task任务管理系统</title>
+	<css href="__PUBLIC__/css/common.css" />
+</head>
+<body>
+<div id="task_header">
+    <div class="header_box">
+        <a id="href" href="{:U('index/index')}" class="logo_box"></a>
+        <div class="user_action_box">
+            <!--<i class="user_action_icon"></i>
+            欢迎您：<a class="user_name"><empty name="userName">游客<else />{$userName}</empty></a>
+            <a class="btn btn_img user_exit" href="{:u('passport/logout')}">退出</a>-->
+        </div>
+    </div>
+</div>
+<block name="main">
+    <div class="content_box">
+        <div class="alert_message">
+            <div class="main_alert alert_404"></div>
+			<div class="alert_btn">
+                <a class="btn" href="{:U('index/index')}"><i></i>返回首页</a>
+            </div>
+            <div class="alert_tips">
+                <p>没有找到您访问的页面原因可能如下：</p>
+                <p>可能输入了错误的网址，或者该网页已删除或移动，页面太受欢迎，大多数人在访问导致拥堵。</p>
+            </div>
+        </div>
+    </div>
+</block>

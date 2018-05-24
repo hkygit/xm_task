@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>集成-报价单</title>
+</head>
+<body>
+<div align="center">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="text-align:center;background: #fff;padding: 10px 0;">
+        <tr>
+            <td>
+                <table width="1200" cellpadding="0" cellspacing="0" border="0" style="text-align: center;font-family: microsoft yahei;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);margin: auto">
+                    <tr>
+                        <td align="center">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="text-align: left;">
+                                <tr>
+                                    <td style="padding-left: 62px;padding-top: 30px;padding-bottom: 22px;">
+                                        <img src="image/img/quotation_img/jicheng_logo.png" style="vertical-align: middle" alt="" title="">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100%" align="center">
+                            <table width="90%" cellpadding="0" cellspacing="0" border="0" style="border: 10px solid #ca141c;margin: auto;margin-bottom: 20px;background: #fff;">
+                                <tr>
+                                    <td align="center">
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding-top: 50px;font-size: 32px;color: #444;">
+                                            <tr>
+                                                <td valign="middle" style="text-align: center;font-weight: bold">
+                                                    杭州雄迈集成电路技术有限公司产品报价
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 50px 40px 30px 40px;">
+                                            <tr>
+                                                <td valign="middle">
+                                                    <table width="100%" cellpadding="0" cellspacing="0" border="1" style="border-color: #dfdfdf;text-align: center;line-height: 140%">
+													<notempty name="title">
+                                                        <tr>
+                                                            <td colspan="5" style="text-align: center;padding: 15px 0;font-size: 20px;">
+                                                                <b>To：{$title}客户公司</b></td>
+                                                        </tr>
+													</notempty>
+                                                        <tr>
+                                                            <td width="20%" style="padding: 10px 0;">产品图片</td>
+                                                            <td width="20%" style="padding: 10px 0;">产品名称</td>
+                                                            <td width="16%" style="padding: 10px 0;">产品型号</td>
+                                                            <td width="34%" style="padding: 10px 0;">主要规格</td>
+                                                            <td width="10%" style="padding: 10px 0;">报价</td>
+                                                        </tr>
+                                                        <volist name="list" id="vo">
+                                                        <tr>
+                                                            <td valign="middle" style="padding: 10px 10px;">--
+                                                                <!-- <img style="width: 180px;" src="image/img/quotation_img/verific_1_1.jpg" alt="" title=""> -->
+                                                            </td>
+                                                            <td style="padding: 10px 10px;text-align: left;">{$vo.p_name}</td>
+                                                            <td style="padding: 10px 10px;">
+                                                                {$vo.model}
+                                                            </td>
+                                                            <td style="padding: 10px 10px;text-align: left;">
+                                                                --
+                                                            </td>
+                                                            <td style="padding: 10px 10px;">
+                                                                {$vo.price}
+                                                            </td>
+                                                        </tr>
+                                                        </volist>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding-top: 150px;padding-bottom: 30px;">
+                                                        <tr>
+                                                            <td width="50%">
+                                                                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="text-align: left;">
+                                                                    <tr>
+                                                                        <td style="padding: 8px 0;">报价人：    {$user_name}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding: 8px 0;">联系电话：    {$link_num}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding: 8px 0;">报价时间：    {$create_time}</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                            <td width="50%" valign="middle">
+                                                                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="text-align: right;">
+                                                                    <tr>
+                                                                        <td style="padding-right: 180px;">盖章：</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

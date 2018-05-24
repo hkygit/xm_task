@@ -1,0 +1,113 @@
+<table class="main_table">
+	<thead>
+	<tr>
+		<if condition="$batchDelAccess">
+			<th class="row_select">
+				<input type="checkbox" name="chkall" />
+			</th>
+		</if>
+		<th class="col_50_px">
+			<a class="sort_icon <eq name="sort_field" value="wid"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="wid">ID</a>
+		</th>
+		<th class="col_20">
+			任务名称
+		</th>
+		<th>
+			<a class="sort_icon <eq name="sort_field" value="precedence"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="precedence">优先级</a>
+		</th>
+		<!--<th class="col_80">
+			<a class="sort_icon <eq name="sort_field" value="creator"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="creator">提出人</a>
+		</th>-->
+		<th class="col_100">
+			<a class="sort_icon <eq name="sort_field" value="taskStatus"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="taskStatus">状态</a>
+		</th>
+		<th>
+			<a class="sort_icon <eq name="sort_field" value="taskStage"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="taskStage">阶段</a>
+		</th>
+		<th class="col_date">
+			<a class="sort_icon <eq name="sort_field" value="endDate"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="endDate">截止</a>
+		</th>
+		<th class="col_80">
+			<a class="sort_icon <eq name="sort_field" value="person"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="person">指派给</a>
+		</th>
+		<th class="col_75">
+			<a class="sort_icon <eq name="sort_field" value="parentTask"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="parentTask">上级</a>
+		</th>
+		<th class="col_80">
+			<a class="sort_icon <eq name="sort_field" value="danger"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="danger">危险评估</a>
+		</th>
+		<th>
+			<a class="sort_icon <eq name="sort_field" value="cTaskNum"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="cTaskNum">子任务</a>
+		</th>
+		<th class="col_120">
+			<a class="sort_icon <eq name="sort_field" value="progress"><eq name="sort_order" value="DESC">drop_sort<else />rise_sort</eq> sort_already<else />no_sort</eq>" data-field="progress">进度</a>
+		</th>
+		<th class="col_21">
+			操作
+		</th>
+	</tr>
+	</thead>
+	<notempty name="list">
+		<tbody class="data_load_box">
+		<volist name="list" id="val">
+			<tr class="main_tr <eq name="mod" value="0">odd_tr<else />even_tr</eq>">
+				<if condition="$batchDelAccess"><td><input type="checkbox" name="delId[]" value="{$val.wid}" /></td></if>
+				<td>{$val.wid}</td>
+				<td class="text_left"><a href="{:U('view', array('id' => $val['wid']))}" title="{$val.title|htmlspecialchars}" target="_blank">{$val.title|htmlspecialchars}</a></td>
+				<td>{$val.priority}</td>
+				<!--<td>{$val.create_user}</td>-->
+				<td class="{$val.status_class}">{$val.status}</td>
+				<td class="{$val.stage_class}">{$val.stage}</td>
+				<td><if condition="empty($val['endDate']) OR $val['endDate'] eq '0000-00-00'">--<else />{$val.endDate}</if></td>
+				<td>{$val.assign_user|default='--'}</td>
+				<td><empty name="val.parentTask">--<else /><a href="{:U('view', array('id' => $val['parentTask']))}" title="#{$val.parentTask}" target="_blank">#{$val.parentTask}</a></empty></td>
+				<td class="<switch name="val.danger"><case value="已超期限">beyond_deadline</case><case value="危险">step_org</case><case value="高危">step_red</case><case value="正常">step_green</case><default /></switch>">{$val.danger}</td>
+				<td><if condition="$val['workUserNum'] neq '2'">--<elseif condition="!$viewChildAccess OR $val['cTaskNum'] elt '0'" />{$val.cTaskNum}<else /><a class="onlyBody_click" data-dialogtitle="{:sub_str($val['title'], 20)} > 子任务" data-dialogid="viewChildTaskDialog" href="{:U('viewChildTasks', array('id' => $val['wid']))}" target="_blank">{$val.cTaskNum}</a></if></td>
+				<td>
+					<div class="progress_bar_box">
+						<div class="fl progress_bar_contrainer">
+							<span class="progress_bar_state" style="width:{$val.progress};"></span>
+						</div>
+						<i class="fr progress_bar_tips">{$val.progress}</i>
+					</div>
+				</td>
+				<td>
+					<notempty name="val.assignBtn">{$val.assignBtn}</notempty>
+					<notempty name="val.changeBtn">{$val.changeBtn}</notempty>
+					<notempty name="val.reviewBtn">{$val.reviewBtn}</notempty>
+					<notempty name="val.pauseBtn">{$val.pauseBtn}</notempty>
+					<notempty name="val.continueBtn">{$val.continueBtn}</notempty>
+					<notempty name="val.startBtn">{$val.startBtn}</notempty>
+					<notempty name="val.recordestimateBtn">{$val.recordestimateBtn}</notempty>
+					<notempty name="val.finishBtn">{$val.finishBtn}</notempty>
+					<notempty name="val.closeBtn">{$val.closeBtn}</notempty>
+					<notempty name="val.editBtn">{$val.editBtn}</notempty>
+					<notempty name="val.breakBtn">{$val.breakBtn}</notempty>
+					<notempty name="val.overdueProcessBtn">{$val.overdueProcessBtn}</notempty>
+					<notempty name="val.delBtn">{$val.delBtn}</notempty>
+				</td>
+			</tr>
+		</volist>
+		</tbody>
+	<else />
+		<tbody class="no_data_box">
+		<tr>
+			<td colspan="<if condition="$batchDelAccess">13<else />12</if>">没有数据</td>
+		</tr>
+		</tbody>
+	</notempty>
+	<tfoot>
+	<tr>
+		<td colspan="<if condition="$batchDelAccess">13<else />12</if>">
+			<if condition="$batchDelAccess">
+				<div class="fl select_action">
+					<input type="checkbox" id="select_row" name="chkall" />
+					<label class="btn no_select btn_select_row" for="select_row">全选/反选</label>
+					<a class="btn btn_img btn_delete_row" id="batchDelBtn" data-url="{:U('batchDel')}">批量删除</a>
+				</div>
+			</if>
+			<include file="Public:basePage" />
+		</td>
+	</tr>
+	</tfoot>
+</table>

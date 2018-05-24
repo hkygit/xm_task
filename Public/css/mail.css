@@ -1,0 +1,235 @@
+@charset "utf-8";
+/* 全局样式 */
+body {
+    text-align: center;
+    font: 14px/1.5 microsoft yahei, arial;
+    color: #000;
+    margin: 0;
+    background: #e6e6e6;
+}
+
+body div {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    overflow: hidden;
+}
+
+ul, ol {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style-type: disc;
+    list-style-position: inside;
+    list-style-image: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.hide {
+    display: none;
+}
+
+#mail_page {
+    overflow: hidden;
+}
+
+#mail_page .mail_page_box {
+    width: 720px;
+    margin: 20px auto;
+    background: #fff;
+    border: 1px solid #cecece;
+    background-image: url("../image/img/mail_temp_01.png");
+    background-repeat: repeat-x;
+    background-position: center top;
+}
+
+#mail_page .mail_page_box .mail_temp_contrainer {
+    width: 90%;
+    margin: 30px auto;
+}
+
+#mail_page .mail_page_box .mail_temp_contrainer .mail_temp_title {
+    background: #1f8ec3;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+}
+
+.mail_temp_title .mail_title_box {
+    border: 1px dashed #cecece;
+    margin: 3px 3px;
+    height: 32px;
+    line-height: 32px;
+}
+
+.mail_temp_title .mail_title_box .mail_title_name {
+    margin-left: 10px;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.mail_temp_title .mail_title_box .mail_assign {
+    color: #000;
+    margin-right: 10px;
+    border: 1px solid #cecece;
+    background: #d0e1f5;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 4px #2f2f2f;
+    height: 24px;
+    line-height: 24px;
+    margin-top: 3px;
+    padding: 0 15px;
+}
+
+.mail_temp_title .mail_title_box .mail_assign i {
+    display: inline-block;
+    vertical-align: middle;
+    border: 3px solid #000;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    margin: 0 8px;
+}
+
+.mail_temp_title .mail_title_box .mail_assign b {
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    font-family: "华文行楷";
+    color: #100eca;
+    font-weight: normal;
+}
+
+.mail_content_box {
+    margin-top: 10px;
+    position: relative;
+}
+
+.mail_content_box .mail_content_legend {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    padding-left: 16px;
+    background: url("../image/img/mail_temp_02.png") no-repeat left top;
+    height: 46px;
+}
+
+.mail_content_box .mail_content_legend .mail_legend {
+    float: left;
+    background: url("../image/img/mail_temp_03.png") repeat-x center top;
+    height: 46px;
+    line-height: 35px;
+    font-size: 18px;
+    text-shadow: 1px 1px 1px #000;
+    color: #fff;
+    padding-right: 10px;
+}
+
+.mail_content_box .mail_content_legend i {
+    background: url("../image/img/mail_temp_04.png") no-repeat center top;
+    height: 46px;
+    width: 35px;
+    display: block;
+    float: left;
+}
+
+.mail_content_box .mail_content {
+    border: 1px solid #059df0;
+    margin: 0 15px;
+    background: #e1f0f7;
+}
+
+.mail_content_box .mail_content .mail_content_detail {
+    margin-top: 30px;
+    padding: 20px 30px;
+    line-height: 25px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.org_content .mail_content_legend {
+    background-image: url("../image/img/mail_temp_05.png");
+}
+
+.org_content .mail_content_legend .mail_legend {
+    background-image: url("../image/img/mail_temp_06.png");
+}
+
+.org_content .mail_content_legend i {
+    background-image: url("../image/img/mail_temp_07.png");
+}
+
+.org_content .mail_content {
+    border: 1px solid #fe7001;
+    background: #fedbbd;
+}
+
+.task_history_list .history_item {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.task_history_list .btn {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.task_history_list .history_item b {
+    padding: 0 5px;
+}
+
+.task_history_list .history_item a {
+    padding: 0 5px;
+    color: #0033d9;
+}
+
+.task_history_list .history_item a:hover {
+    text-decoration: underline;
+}
+
+.task_history_list .history_change_box {
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #cecece;
+    background: #e6e6e6;
+    margin: 5px 0;
+}
+
+.task_history_list .history_change {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background: #e6e6e6;
+    border: 1px solid #cecece;
+}
+
+.task_history_list .history_change b {
+    font-style: italic;
+}
+
+.task_history_list .history_change blockquote {
+    margin: 5px 0;
+    border-left: 5px solid #cecece;
+    padding: 0 30px;
+}
+
+.task_history_list .history_change blockquote del,
+.task_history_list .history_change blockquote ins {
+    margin-left: 5px;
+}
+
+.task_history_list .history_comment {
+    background: #e6e6e6;
+    line-height: 22px;
+    padding-left: 5px;
+}

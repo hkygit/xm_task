@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>邮件模板</title>
+</head>
+<body>
+<div align="center">
+    <table class="mail_page_reload" width="720" cellpadding="0" cellspacing="0" style="font-family: microsoft yahei;">
+        <tr>
+            <td align="center" style="font-size: 14px;padding-top:5px;padding-bottom:5px;">
+                如果邮件未正常显示，请点击<a style="padding-left: 2px;padding-right: 2px;color: #0033d9;cursor: pointer;text-decoration: underline;" href="{$url}">这里</a>
+            </td>
+        </tr>
+    </table>
+    <table class="mail_page_box" width="720" cellpadding="0" cellspacing="0" bgcolor="#dee5ef" style="border: 2px solid #b0bdd0;padding-bottom: 15px;font-family: microsoft yahei">
+        <tr>
+            <td style="padding-top:20px;padding-left: 30px;padding-right: 30px;padding-bottom: 0;">
+                <table border="0" cellpadding="0" cellspacing="0" style="background: #1f8ec3;height: 40px;width: 100%;">
+                    <tr>
+                        <td style="padding: 3px">
+                            <table cellpadding="0" cellspacing="0" style="border: 1px dashed #fff;width: 100%;text-align: left">
+                                <tr>
+                                    <td align="left" valign="middle" style="padding-left: 10px;padding-top: 5px;padding-bottom: 5px;padding-right: 5px;">
+                                        <table cellpadding="0" cellspacing="0" width="385" style="color: #fff;font-size: 18px;font-family: 'Microsoft YaHei';text-shadow: 1px 1px 1px #000;">
+                                            <tr>
+                                                <td>
+                                                    <a style="cursor: pointer;text-decoration: underline;word-wrap: break-word;word-break:break-all;color: #fff;line-height: 120%;" href="{$url}">
+                                                       {$name}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td valign="middle" align="right" style="padding: 5px 10px 5px 0;">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td style="border: 1px solid #cecece;background: #d0e1f5;border-radius: 5px;box-shadow: inset 1px 1px 4px #2f2f2f;padding: 0 8px;font: 14px 'microsoft yahei',arial;line-height: 20px;">
+                                                    超期反馈人
+                                                    <i style="font-style: normal;">●</i>
+													<empty name="assignTo">
+													--
+													<else />
+                                                    <b style="color: #100eca;font-weight: normal;line-height: 20px;height: 20px;font-size: 18px;font-family: 华文新魏">{$assignTo}</b>
+													</empty>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+		
+		<notempty name="abnormal">
+			<tr>
+				<td style="padding: 10px 30px 0 30px;">
+					<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;font-family: 'microsoft yahei',arial;">
+						<tr>
+							<td style="padding: 0 15px;">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+									<tr>
+										<td style="background: #ca141c;border: 1px solid #ca141c;padding-left: 10px;font-size: 18px;">
+											<table cellpadding="0" cellspacing="0" style="font-family:'Microsoft YaHei';">
+												<tr>
+													<td height="30" valign="middle" style="color: #ffffff;font-size: 18px;padding-right: 6px;">超期详情</td>
+													<td height="30" valign="middle">
+														<img src="{$mail_background_img}mail_temp_title.png" alt="" title="" style="vertical-align: middle">
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding: 0 15px;">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+									<tr>
+										<td align="left" valign="middle" style="background: #fee9d4;border: 1px solid #ca141c;border-top: 0;padding: 10px 20px 10px 20px;font-size: 14px;line-height: 160%;">
+											{$abnormal}
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</notempty>
+		
+		<notempty name="actionLog">
+			<tr>
+				<td style="padding: 10px 30px 0 30px;">
+					<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;font-family: 'microsoft yahei',arial;">
+						<tr>
+							<td style="padding: 0 15px;">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+									<tr>
+										<td style="background: #fe7200;border: 1px solid #fe7001;padding-left: 10px;font-size: 18px;">
+											<table cellpadding="0" cellspacing="0" style="font-family:'Microsoft YaHei';">
+												<tr>
+													<td height="30" valign="middle" style="color: #ffffff;font-size: 18px;padding-right: 6px;">超期原因</td>
+													<td height="30" valign="middle">
+														<img src="{$mail_background_img}mail_temp_title.png" alt="" title="" style="vertical-align: middle">
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="padding: 0 15px;">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+									<tr>
+										<td align="left" valign="middle" style="background: #fedbbd;border: 1px solid #fe7001;border-top: 0;padding: 10px 20px 10px 20px;font-size: 14px;line-height: 160%;">
+											{$actionLog.comment}
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</notempty>
+		
+		<volist name="content" id="val">
+			<tr>
+				<td style="padding: 10px 30px 0 30px;">
+					<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;font-family: 'microsoft yahei',arial;">
+						<tr>
+							<td style="padding: 0 15px;">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+									<tr>
+										<td style="background: #1f8fc3;border: 1px solid #059df0;padding-left: 10px;font-size: 18px;">
+											<table cellpadding="0" cellspacing="0" style="font-family:'Microsoft YaHei';">
+												<tr>
+													<td height="30" valign="middle" style="color: #ffffff;font-size: 18px;padding-right: 6px;"> {$val.title}</td>
+													<td height="30" valign="middle">
+														<img src="{$mail_background_img}mail_temp_title.png" alt="" title="" style="vertical-align: middle">
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding: 0 15px;">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+									<tr>
+										<td align="left" valign="middle" style="background: #e1f0f7;border: 1px solid #059df0;border-top: 0;padding: 10px 20px 10px 20px;font-size: 14px;line-height: 160%;">{$val.desc}</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</volist>
+		
+    </table>
+</div>
+</body>
+</html>

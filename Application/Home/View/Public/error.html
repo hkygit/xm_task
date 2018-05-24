@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="Shortcut Icon" href="__PUBLIC__/image/img/favicon.ico">
+    <title>页面跳转-Task任务管理系统</title>
+	<css href="__PUBLIC__/css/common.css" />
+</head>
+<body>
+<div id="task_header">
+    <div class="header_box">
+        <a href="{:U('index/index')}" class="logo_box"></a>
+        
+        <div class="user_action_box">
+            <!--<i class="user_action_icon"></i>
+            欢迎您：<a class="user_name"><empty name="userName">游客<else />{$userName}</empty></a>
+            <a class="btn btn_img user_exit" href="{:u('passport/logout')}">退出</a>-->
+        </div>
+    </div>
+</div>
+<div class="content_box">
+	<div class="alert_message alert_message_box">
+		<div class="main_alert alert_403"></div>
+		<div class="alert_text">
+			<notempty name="message">{$message}<else />{$error}</notempty>
+		</div>
+		<div class="alert_btn">
+			<a class="btn" href="{:U('index/index')}"><i></i>返回首页</a>
+			<a id="href" class="btn" href="{$jumpUrl}"><i></i>返回上一页</a>
+		</div>
+		<div class="alert_action"><b id="waitRemainTime">{$waitSecond}</b>秒后自动跳转......</div>
+	</div>
+</div>
+
+<js href="__PUBLIC__/js/jquery.js?v=1.11" />
+<script type="text/javascript">
+	$(function() {
+		var waitTime = '{$waitSecond}', url = '{$jumpUrl}', t;
+		clearTimeout(t);
+		var func = (function() {
+			var c = function() {
+				t = setTimeout(function() {
+					waitTime--;
+					if(waitTime <= 0) {
+						if(!url.match(/history.back/i)) {
+							window.location = url;
+							return false;
+						}
+
+						var brownAgent = navigator.userAgent;
+
+						if(/msie/i.test(brownAgent) && brownAgent.match(/msie (\d+\.\d+)/i)[1] < 10) {
+							if(history.length > 0 && document.referrer) {
+								window.location = document.referrer;
+							} else if(history.length < 1){
+								window.opener = null;
+								window.open("", "_self");
+								window.close();
+							}else if(url) {
+								window.location = url;
+							}
+						} else {
+							if(window.history.length > 1 && document.referrer) {
+								window.location = document.referrer;
+							}else if(brownAgent.indexOf('Firefox') >= 0 || window.history.length < 1) {
+								window.open("about:blank","_self").close();
+							}else if(url && window.history.length > 1) {
+								window.location = url;
+							}else {
+								window.opener = null;
+								window.open("", "_self");
+								window.close();
+							}
+						}
+					} else {
+						document.getElementById('waitRemainTime').innerHTML=waitTime;
+						func.changeRemainTime();
+					}
+				}, 1000)
+			};
+
+			return {
+				"changeRemainTime": c
+			};
+		}())
+
+		func.changeRemainTime();
+	});
+</script>
+</body>
+</html>
