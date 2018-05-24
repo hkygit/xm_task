@@ -30,4 +30,6 @@ return array(
 
     'NOT_LOGIN_MODULE'		=>	'Passport',
     'NOT_LOGIN_ACTION'		=>	'',
+
+    'USER_AUTH_KEY'			=>	'xm_user_access_auth',
 );
