@@ -198,8 +198,8 @@ class CommontasksController extends BaseController
             // ->distinct(true)
             ->field('w.id, w.name, w.priority, w.status, IF(pa.id IS NULL, w.status, 12) overdue_status, pa.now_review_by, w.stage, w.deadline, w.pid, w.child_num, w.work_type, w.feedback_object, a.user_name assign_user, assess_task_danger(w.status, w.deadline, w.plan_start, w.consumed, w.surplus) danger, w.consumed/(w.consumed+w.surplus) progress, w.create_by, w.assign')
             ->group('w.id')
-            ->select();
-        // dump($list);
+            ->select(false);
+        echo $list;return;
         if(!empty($list)) {
             $taskIds = array();
             foreach($list as $k => $val) {
